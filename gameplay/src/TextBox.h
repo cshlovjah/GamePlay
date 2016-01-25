@@ -88,7 +88,7 @@ public:
      * @param character Character to display in password mode.
      * @script{ignore}
      */
-    void setPasswordChar(wchar_t character);
+    void setPasswordChar(char character);
 
     /**
      * Get the character displayed in password mode.
@@ -97,7 +97,7 @@ public:
      *
      * @script{ignore}
      */
-    wchar_t getPasswordChar() const;
+    char getPasswordChar() const;
 
     /**
      * Set the input mode.
@@ -119,7 +119,7 @@ public:
      * Update the text being edited.
      * @script{ignore}
      */
-    void setText(wchar_t const *text) override;
+    void setText(char const *text) override;
 
 protected:
 
@@ -208,7 +208,7 @@ protected:
      *
      * @return The text to be displayed.
      */
-    std::wstring getDisplayedText() const;
+    std::string getDisplayedText() const;
 
     /**
      * @see Control::updateBounds
@@ -243,7 +243,7 @@ protected:
     /**
      * The character displayed in password mode.
      */
-    wchar_t _passwordChar;
+    char _passwordChar;
 
     /**
      * The mode used to display the typed text.

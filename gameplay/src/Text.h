@@ -48,7 +48,7 @@ public:
      * @return A Text object.
      * @script{ignore}
      */
-    static Text* create(const char* fontPath, const wchar_t* str, const Vector4& color = Vector4::one(), unsigned int size = 0);
+    static Text* create(const char* fontPath, const char* str, const Vector4& color = Vector4::one(), unsigned int size = 0);
     
     /**
      * Creates text from a properties object.
@@ -64,7 +64,7 @@ public:
      * @param str The text string to be drawn.
      * @script{ignore}
      */
-    void setText(const wchar_t* str);
+    void setText(const char* str);
     
     /**
      * Get the string that will be drawn from this Text object.
@@ -72,7 +72,7 @@ public:
      * @return The text string to be drawn.
      * @script{ignore}
      */
-    const wchar_t* getText() const;
+    const char* getText() const;
     
     /**
      * Gets the size of the text to be drawn.
@@ -258,7 +258,7 @@ private:
 
     Font* _font;
     Font* _drawFont;
-    std::wstring _text;
+    std::string _text;
     unsigned int _size;
     float _width;
     float _height;

@@ -23,6 +23,8 @@
 #include <glib.h>
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
+#include <pwd.h>
+#include <sys/utsname.h>
 
 #define TOUCH_COUNT_MAX     4
 #define MAX_GAMEPADS 4
@@ -1742,6 +1744,35 @@ std::string Platform::displayFileDialog(size_t mode, const char* title, const ch
         gtk_main_iteration();
 
     return filename;
+}
+
+const char * Platform::getTemporaryFolderPath( )
+{
+    static char const *folder = getenv("TMPDIR");
+
+    if (folder == 0)
+        folder = "/tmp";
+
+    return folder;
+}
+
+const char * Platform::getDocumentsFolderPath( )
+{
+    static struct passwd *pw = getpwuid(getuid());
+    return pw->pw_dir;
+}
+
+const char * Platform::getAppPrivateFolderPath( )
+{
+    static struct passwd *pw = getpwuid(getuid());
+    return pw->pw_dir;
+}
+
+const char * Platform::getUserAgentString( )
+{
+    static struct utsname unameData;
+    uname(&unameData);
+    return unameData.sysname;
 }
 
 }

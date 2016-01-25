@@ -1,7 +1,7 @@
 #include "Base.h"
 #include "FileSystem.h"
 #include "Image.h"
-#include <jpeg/jpeglib.h>
+#include <jpeglib.h>
 
 namespace gameplay
 {

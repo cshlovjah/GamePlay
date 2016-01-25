@@ -11,7 +11,7 @@ static const float MOVE_FRACTION = 0.005f;
 
 Slider::Slider() : _min(0.0f), _max(0.0f), _step(0.0f), _value(0.0f), _delta(0.0f), _minImage(NULL),
     _maxImage(NULL), _trackImage(NULL), _markerImage(NULL), _valueTextVisible(false),
-    _valueTextAlignment(Font::ALIGN_BOTTOM_HCENTER), _valueTextPrecision(0), _valueText(L""), 
+    _valueTextAlignment(Font::ALIGN_BOTTOM_HCENTER), _valueTextPrecision(0), _valueText(""),
     _trackHeight(0.0f), _gamepadValue(0.0f), _imageScale(1.0f)
 {
     _canFocus = true;

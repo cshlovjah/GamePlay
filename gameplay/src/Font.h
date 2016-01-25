@@ -136,7 +136,7 @@ public:
      * @param lineSpacing Additional spacing between lines, in pixels.
      * @script{ignore}
      */
-    void drawText(const wchar_t* text, float x, float y, const Vector4& color, float size = 0, DrawFlags flags = LEFT_TO_RIGHT, float characterSpacing = 0.0f, float lineSpacing = 0.0f) const;
+    void drawText(const char* text, float x, float y, const Vector4& color, float size = 0, DrawFlags flags = LEFT_TO_RIGHT, float characterSpacing = 0.0f, float lineSpacing = 0.0f) const;
 
     /**
      * Draws the specified text in a solid color, with a scaling factor.
@@ -154,7 +154,7 @@ public:
      * @param lineSpacing Additional spacing between lines, in pixels.
      * @script{ignore}
      */
-    void drawText(const wchar_t* text, float x, float y, float red, float green, float blue, float alpha, float size = 0, 
+    void drawText(const char* text, float x, float y, float red, float green, float blue, float alpha, float size = 0,
         DrawFlags flags = LEFT_TO_RIGHT, float characterSpacing = 0.0f, float lineSpacing = 0.0f) const;
 
     /**
@@ -173,7 +173,7 @@ public:
      * @param lineSpacing Additional spacing between lines, in pixels.
      * @script{ignore}
      */
-    void drawText(const wchar_t* text, const Rectangle& area, const Vector4& color, float size = 0, 
+    void drawText(const char* text, const Rectangle& area, const Vector4& color, float size = 0,
         Justify justify = ALIGN_TOP_LEFT, bool wrap = true, DrawFlags flags = LEFT_TO_RIGHT, const Rectangle& clip = Rectangle(0, 0, 0, 0),
         float characterSpacing = 0.0f, float lineSpacing = 0.0f) const;
 
@@ -194,7 +194,7 @@ public:
      * @param lineSpacing Additional spacing between lines, in pixels.
      * @script{ignore}
      */
-    void measureText(const wchar_t* text, float size, DrawFlags flags, float* widthOut, float* heightOut,
+    void measureText(const char* text, float size, DrawFlags flags, float* widthOut, float* heightOut,
         float characterSpacing = 0.0f, float lineSpacing = 0.0f) const;
 
     /**
@@ -213,7 +213,7 @@ public:
      * @param lineSpacing Additional spacing between lines, in pixels.
      * @script{ignore}
      */
-    void measureText(const wchar_t* text, const Rectangle& clip, float size, DrawFlags flags, Rectangle* out,
+    void measureText(const char* text, const Rectangle& clip, float size, DrawFlags flags, Rectangle* out,
                      Justify justify = ALIGN_TOP_LEFT, bool wrap = true, bool ignoreClip = false,
                      float characterSpacing = 0.0f, float lineSpacing = 0.0f) const;
 
@@ -221,7 +221,7 @@ public:
      * Get an character index into a string corresponding to the character nearest the given location within the clip region.
      * @script{ignore}
      */
-    int getIndexAtLocation(const wchar_t* text, const Rectangle& clip, float size, const Vector2& inLocation, Vector2* outLocation,
+    int getIndexAtLocation(const char* text, const Rectangle& clip, float size, const Vector2& inLocation, Vector2* outLocation,
         Justify justify = ALIGN_TOP_LEFT, bool wrap = true, DrawFlags flags = LEFT_TO_RIGHT,
         float characterSpacing = 0.0f, float lineSpacing = 0.0f) const;
 
@@ -229,7 +229,7 @@ public:
      * Get the location of the character at the given index.
      * @script{ignore}
      */
-    void getLocationAtIndex(const wchar_t* text, const Rectangle& clip, float size, Vector2* outLocation, const unsigned int destIndex,
+    void getLocationAtIndex(const char* text, const Rectangle& clip, float size, Vector2* outLocation, const unsigned int destIndex,
         Justify justify = ALIGN_TOP_LEFT, bool wrap = true, DrawFlags flags = LEFT_TO_RIGHT,
         float characterSpacing = 0.0f, float lineSpacing = 0.0f) const;
 
@@ -340,19 +340,19 @@ private:
      */
     static Font* create(const char* family, Style style, unsigned int size, Glyph* glyphs, int glyphCount, Texture* texture, Font::Format format);
 
-    void getMeasurementInfo(const wchar_t* text, const Rectangle& area, float size, Justify justify, bool wrap, DrawFlags flags,
+    void getMeasurementInfo(const char* text, const Rectangle& area, float size, Justify justify, bool wrap, DrawFlags flags,
                             std::vector<float>* xPositions, float* yPosition, std::vector<unsigned int>* lineLengths,
                             float characterSpacing, float lineSpacing) const;
 
-    int getIndexOrLocation(const wchar_t* text, const Rectangle& clip, float size, const Vector2& inLocation, Vector2* outLocation,
+    int getIndexOrLocation(const char* text, const Rectangle& clip, float size, const Vector2& inLocation, Vector2* outLocation,
         const int destIndex = -1, Justify justify = ALIGN_TOP_LEFT, bool wrap = true, DrawFlags flags = LEFT_TO_RIGHT,
         float characterSpacing = 0.0f, float lineSpacing = 0.0f) const;
 
-    float getTokenWidth(const wchar_t* token, unsigned int length, float size, float scale, float characterSpacing) const;
+    float getTokenWidth(const char* token, unsigned int length, float size, float scale, float characterSpacing) const;
 
-    unsigned int getReversedTokenLength(const wchar_t* token, const wchar_t* bufStart) const;
+    unsigned int getReversedTokenLength(const char* token, const char* bufStart) const;
 
-    int handleDelimiters(const wchar_t** token, const float size, float scale, const int iteration, const float areaX, float* xPos, float* yPos, unsigned int* lineLength,
+    int handleDelimiters(const char** token, const float size, float scale, const int iteration, const float areaX, float* xPos, float* yPos, unsigned int* lineLength,
                          std::vector<float>::const_iterator* xPositionsIt, std::vector<float>::const_iterator xPositionsEnd, unsigned int* charIndex = NULL,
                          const Vector2* stopAtPosition = NULL, const int currentIndex = -1, const int destIndex = -1, 
                          float characterSpacing = 0.0f, float lineSpacing = 0.0f) const;

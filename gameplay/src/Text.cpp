@@ -7,7 +7,7 @@ namespace gameplay
 {
   
 Text::Text() :
-    _font(NULL), _drawFont(NULL), _text(L""), _size(0), _width(0), _height(0), _wrap(true), _flags(Font::LEFT_TO_RIGHT),
+    _font(NULL), _drawFont(NULL), _text(""), _size(0), _width(0), _height(0), _wrap(true), _flags(Font::LEFT_TO_RIGHT),
     _align(Font::ALIGN_TOP_LEFT), _clip(Rectangle(0, 0, 0, 0)),
     _opacity(1.0f), _color(Vector4::one())
 {
@@ -25,7 +25,7 @@ Text& Text::operator=(const Text& text)
     return *this;
 }
     
-Text* Text::create(const char* fontPath, const wchar_t* str, const Vector4& color, unsigned int size)
+Text* Text::create(const char* fontPath, const char* str, const Vector4& color, unsigned int size)
 {
     GP_ASSERT(fontPath);
     GP_ASSERT(str);
@@ -112,15 +112,15 @@ Text* Text::create(Properties* properties)
     }
 
     // Create
-    return Text::create(fontPath, L"", color, size);
+    return Text::create(fontPath, "", color, size);
 }
     
-void Text::setText(const wchar_t* str)
+void Text::setText(const char* str)
 {
     _text = str;
 }
 
-const wchar_t* Text::getText() const
+const char* Text::getText() const
 {
     return _text.c_str();
 }

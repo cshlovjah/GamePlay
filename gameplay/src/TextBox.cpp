@@ -91,7 +91,7 @@ bool TextBox::touchEvent(Touch::TouchEvent evt, int x, int y, unsigned int conta
     return Label::touchEvent(evt, x, y, contactIndex);
 }
 
-static bool isWhitespace(wchar_t c)
+static bool isWhitespace(char c)
 {
     switch (c)
     {
@@ -106,7 +106,7 @@ static bool isWhitespace(wchar_t c)
     }
 }
 
-static unsigned int findNextWord(const std::wstring& text, unsigned int from, bool backwards)
+static unsigned int findNextWord(const std::string& text, unsigned int from, bool backwards)
 {
     int pos = (int)from;
     if (backwards)
@@ -403,7 +403,7 @@ unsigned int TextBox::drawText(Form* form) const
     if (_font)
     {
         Control::State state = getState();
-        const std::wstring displayedText = getDisplayedText();
+        const std::string displayedText = getDisplayedText();
         unsigned int fontSize = getFontSize(state);
 
         SpriteBatch* batch = _font->getSpriteBatch(fontSize);
@@ -418,7 +418,7 @@ unsigned int TextBox::drawText(Form* form) const
     return 0;
 }
 
-void TextBox::setText(wchar_t const *text)
+void TextBox::setText(char const *text)
 {
     Label::setText(text);
     if (_caretLocation > _text.length())
@@ -439,7 +439,7 @@ void TextBox::setCaretLocation(int x, int y)
     unsigned int fontSize = getFontSize(state);
     Font::Justify textAlignment = getTextAlignment(state);
     Font::DrawFlags flags = getTextDrawingFlags(state);
-    const std::wstring displayedText = getDisplayedText();
+    const std::string displayedText = getDisplayedText();
 
     int index = font->getIndexAtLocation(displayedText.c_str(), _textBounds, fontSize, point, &point,
         textAlignment, true, flags);
@@ -501,12 +501,12 @@ void TextBox::getCaretLocation(Vector2* p)
     getFont(state)->getLocationAtIndex(getDisplayedText().c_str(), _textBounds, getFontSize(state), p, _caretLocation, getTextAlignment(state), true, getTextDrawingFlags(state));
 }
 
-void TextBox::setPasswordChar(wchar_t character)
+void TextBox::setPasswordChar(char character)
 {
     _passwordChar = character;
 }
 
-wchar_t TextBox::getPasswordChar() const
+char TextBox::getPasswordChar() const
 {
     return _passwordChar;
 }
@@ -545,9 +545,9 @@ TextBox::InputMode TextBox::getInputMode(const char* inputMode)
     return TextBox::TEXT;
 }
 
-std::wstring TextBox::getDisplayedText() const
+std::string TextBox::getDisplayedText() const
 {
-    std::wstring displayedText;
+    std::string displayedText;
     switch (_inputMode) {
         case PASSWORD:
             displayedText.insert((size_t)0, _text.length(), _passwordChar);

@@ -1,7 +1,7 @@
 #ifndef NULLSTOREFRONT_H_
 #define NULLSTOREFRONT_H_
 
-#include "Storefront.h"
+#include "StoreFront.h"
 
 
 namespace gameplay

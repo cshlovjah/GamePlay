@@ -4,7 +4,7 @@
 namespace gameplay
 {
 
-Label::Label() : _text(L""), _font(NULL)
+Label::Label() : _text(""), _font(NULL)
     , _textColor( 0.0f, 0.0f, 0.0f, 0.0f )
 {
 }
@@ -62,11 +62,11 @@ void Label::addListener(Control::Listener* listener, int eventFlags)
     Control::addListener(listener, eventFlags);
 }
 
-void Label::setText(const wchar_t* text)
+void Label::setText(const char* text)
 {
-    if ((text == NULL && _text.length() > 0) || wcscmp(text, _text.c_str()) != 0)
+    if ((text == NULL && _text.length() > 0) || strcmp(text, _text.c_str()) != 0)
     {
-        _text = text ? text : L"";
+        _text = text ? text : "";
         if (_autoSize != AUTO_SIZE_NONE)
         {
             // keep our bounds up-to-date even when control is hidden
@@ -76,7 +76,7 @@ void Label::setText(const wchar_t* text)
     }
 }
 
-const wchar_t* Label::getText()
+const char* Label::getText()
 {
     return _text.c_str();
 }

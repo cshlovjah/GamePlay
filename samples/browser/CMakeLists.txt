@@ -83,7 +83,7 @@ COPY_RES( ${GAME_NAME} )
 #set(props "${props} —-preload-file game.config")
 #set_target_properties(${GAME_NAME} PROPERTIES LINK_FLAGS "${props}")
 
-em_link_pre_js(${GAME_NAME} "filesystem.js")
-set(CMAKE_EXE_LINKER_FLAGS "-s TOTAL_MEMORY=256000000")
+#em_link_pre_js(${GAME_NAME} "filesystem.js")
+#set(CMAKE_EXE_LINKER_FLAGS "-s TOTAL_MEMORY=256000000")
 
-SET(CMAKE_EXECUTABLE_SUFFIX ".html")
+#SET(CMAKE_EXECUTABLE_SUFFIX ".html")

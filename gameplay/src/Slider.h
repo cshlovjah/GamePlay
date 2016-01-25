@@ -316,7 +316,7 @@ private:
     /**
      * The text displayed by this slider if set to display its value.
      */
-    std::wstring _valueText;
+    std::string _valueText;
 
     float _trackHeight;
 

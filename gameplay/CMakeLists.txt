@@ -226,7 +226,7 @@ set(GAMEPLAY_SRC
     src/storefront/NullStoreFront.h
     src/storefront/StoreController.cpp
     src/storefront/StoreController.h
-    src/storefront/Storefront.h
+        src/storefront/StoreFront.h
     src/storefront/StoreListener.h
     src/storefront/StoreProduct.cpp
     src/storefront/StoreProduct.h

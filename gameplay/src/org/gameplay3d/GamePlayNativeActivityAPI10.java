@@ -21,7 +21,7 @@ import android.view.View;
  * that are not offered directly the gameplay3d framework such as platform events, access to 
  * android user-interface, life-cycle events for saving game state and custom plug-ins/extensions.
  */
-public class GamePlayNativeActivity extends NativeActivity {
+public class GamePlayNativeActivityAPI10 extends NativeActivity {
         
     private static final String TAG = "GamePlayNativeActivity";
     

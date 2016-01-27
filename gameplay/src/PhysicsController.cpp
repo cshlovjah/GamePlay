@@ -12,6 +12,8 @@
 #endif
 #include "BulletCollision/CollisionShapes/btHeightfieldTerrainShape.h"
 #include "BulletCollision/CollisionShapes/btShapeHull.h"
+#include "PhysicsCollisionShape.h"
+
 #ifdef GP_USE_MEM_LEAK_DETECTION
 #define new DEBUG_NEW
 #endif
@@ -648,6 +650,8 @@ void PhysicsController::addCollisionObject(PhysicsCollisionObject* object)
     short group = (short)object->_group;
     short mask = (short)object->_mask;
 
+  //  GP_WARN("PhysicsController::addCollisionObject %i", object->getType());
+
     // Add the object to the physics world.
     switch (object->getType())
     {
@@ -909,6 +913,12 @@ PhysicsCollisionShape* PhysicsController::createShape(Node* node, const PhysicsC
         }
         break;
 
+    case PhysicsCollisionShape::SHAPE_BVH_MESH:
+        {
+            // Build mesh from passed in shape.
+            collisionShape = createBvhMesh(shape.data.meshInterface);
+        }
+        break;
     default:
         GP_ERROR("Unsupported collision shape type (%d).", shape.type);
         break;
@@ -1137,8 +1147,8 @@ PhysicsCollisionShape* PhysicsController::createMesh(Mesh* mesh, const Vector3& 
     for (unsigned int i = 0; i < data->vertexCount; i++)
     {
         v.set(*((float*)&data->vertexData[i * vertexStride + 0 * sizeof(float)]),
-                *((float*)&data->vertexData[i * vertexStride + 1 * sizeof(float)]),
-                *((float*)&data->vertexData[i * vertexStride + 2 * sizeof(float)]));
+              *((float*)&data->vertexData[i * vertexStride + 1 * sizeof(float)]),
+              *((float*)&data->vertexData[i * vertexStride + 2 * sizeof(float)]));
         v *= m;
         memcpy(&(shapeMeshData->vertexData[i * 3]), &v, sizeof(float) * 3);
     }
@@ -1255,6 +1265,18 @@ PhysicsCollisionShape* PhysicsController::createMesh(Mesh* mesh, const Vector3& 
 
     // Free the temporary mesh data now that it's stored in physics system.
     SAFE_DELETE(data);
+
+    return shape;
+}
+
+PhysicsCollisionShape *PhysicsController::createBvhMesh(btTriangleIndexVertexArray *meshInterface)
+{
+    btCollisionShape* collisionShape = bullet_new<btBvhTriangleMeshShape>(meshInterface, true);
+
+    // Create our collision shape object and store shapeMeshData in it.
+    PhysicsCollisionShape* shape = new PhysicsCollisionShape(PhysicsCollisionShape::SHAPE_BVH_MESH, collisionShape, meshInterface);
+    shape->_shapeData.meshInterface = meshInterface;
+    _shapes.push_back(shape);
 
     return shape;
 }
@@ -1480,5 +1502,6 @@ bool PhysicsController::HitFilter::hit(const PhysicsController::HitResult& resul
 {
     return true;
 }
+
 
 }

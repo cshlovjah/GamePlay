@@ -344,7 +344,11 @@ PhysicsCollisionShape::Definition PhysicsCollisionShape::Definition::create(Node
             }
         }
         break;
-
+    case SHAPE_BVH_MESH:
+        {
+            GP_ERROR("SHAPE_BVH_MESH load not implement!");
+        }
+        break;
     default:
         GP_ERROR("Unsupported physics collision shape type (%d).", type);
         break;
@@ -445,6 +449,18 @@ PhysicsCollisionShape::Definition PhysicsCollisionShape::mesh(Mesh* mesh)
     Definition d;
     d.type = SHAPE_MESH;
     d.data.mesh = mesh;
+    d.isExplicit = true;
+    d.centerAbsolute = false;
+    return d;
+}
+
+PhysicsCollisionShape::Definition PhysicsCollisionShape::bvhMesh(btTriangleIndexVertexArray *meshInterface)
+{
+    GP_ASSERT(meshInterface);
+   // GP_WARN("PhysicsCollisionShape::bvhMesh");
+    Definition d;
+    d.type = SHAPE_BVH_MESH;
+    d.data.meshInterface = meshInterface;
     d.isExplicit = true;
     d.centerAbsolute = false;
     return d;

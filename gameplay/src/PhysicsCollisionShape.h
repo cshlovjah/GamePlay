@@ -30,6 +30,7 @@ public:
         SHAPE_SPHERE,
         SHAPE_CAPSULE,
         SHAPE_MESH,
+        SHAPE_BVH_MESH,
         SHAPE_HEIGHTFIELD
     };
 
@@ -110,6 +111,8 @@ public:
             HeightField* heightfield;
             /** @script{ignore} */
             Mesh* mesh;
+            /** @script{ignore} */
+            btTriangleIndexVertexArray *meshInterface; // FIXME : Copy data ?
         } data;
 
         // Whether the shape definition is explicit, or if it is inherited from node bounds.
@@ -235,6 +238,8 @@ public:
      */
     static PhysicsCollisionShape::Definition mesh(Mesh* mesh);
 
+
+    static PhysicsCollisionShape::Definition bvhMesh(btTriangleIndexVertexArray *meshInterface);
 private:
 
     struct MeshData
@@ -283,6 +288,8 @@ private:
         MeshData* meshData;
         /** @script{ignore} */
         HeightfieldData* heightfieldData;
+        /** @script{ignore} */
+        btTriangleIndexVertexArray *meshInterface;  // FIXME : Copy data ?
     } _shapeData;
 
 };

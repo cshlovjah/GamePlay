@@ -450,6 +450,9 @@ private:
     // Creates a triangle mesh collision shape.
     PhysicsCollisionShape* createMesh(Mesh* mesh, const Vector3& scale, bool dynamic);
 
+    // Creates a triangle mesh collision shape.
+    PhysicsCollisionShape* createBvhMesh(btTriangleIndexVertexArray* mesh);
+
     // Destroys a collision shape created through PhysicsController
     void destroyShape(PhysicsCollisionShape* shape);
 

@@ -91,7 +91,7 @@ void GestureSample::render(float elapsedTime)
     _font->start();
     float y = 0;
     size_t count = 0;
-    for (std::list<std::wstring>::const_iterator it = _eventLog.begin(); it != _eventLog.end(); ++it)
+    for (std::list<std::string>::const_iterator it = _eventLog.begin(); it != _eventLog.end(); ++it)
     {
         ++count;
         _font->drawText(it->c_str(), 0, y, fontColor, fontSize);
@@ -109,32 +109,32 @@ void GestureSample::render(float elapsedTime)
 
     if (isGestureSupported(Gesture::GESTURE_TAP))
     {
-        _font->drawText(L"Tap supported", x, y, fontColor, fontSize);
+        _font->drawText("Tap supported", x, y, fontColor, fontSize);
         y += fontSize;
     }
     if (isGestureSupported(Gesture::GESTURE_SWIPE))
     {
-        _font->drawText(L"Swipe supported", x, y, fontColor, fontSize);
+        _font->drawText("Swipe supported", x, y, fontColor, fontSize);
         y += fontSize;
     }
     if (isGestureSupported(Gesture::GESTURE_PINCH))
     {
-        _font->drawText(L"Pinch supported", x, y, fontColor, fontSize);
+        _font->drawText("Pinch supported", x, y, fontColor, fontSize);
         y += fontSize;
     }
     if (isGestureSupported(Gesture::GESTURE_LONG_TAP))
     {
-        _font->drawText(L"Long tap supported", x, y, fontColor, fontSize);
+        _font->drawText("Long tap supported", x, y, fontColor, fontSize);
         y += fontSize;
     }
     if (isGestureSupported(Gesture::GESTURE_DRAG))
     {
-        _font->drawText(L"Drag supported", x, y, fontColor, fontSize);
+        _font->drawText("Drag supported", x, y, fontColor, fontSize);
         y += fontSize;
     }
     if (isGestureSupported(Gesture::GESTURE_DROP))
     {
-        _font->drawText(L"Drop supported", x, y, fontColor, fontSize);
+        _font->drawText("Drop supported", x, y, fontColor, fontSize);
         y += fontSize;
     }
 
@@ -160,7 +160,7 @@ void GestureSample::touchEvent(Touch::TouchEvent evt, int x, int y, unsigned int
 
 void GestureSample::gestureSwipeEvent(int x, int y, int direction)
 {
-    std::wstringstream convert;
+    std::stringstream convert;
     convert << "Swipe (";
 
     if (direction & Gesture::SWIPE_DIRECTION_UP)
@@ -185,35 +185,35 @@ void GestureSample::gestureSwipeEvent(int x, int y, int direction)
    
 void GestureSample::gesturePinchEvent(int x, int y, float scale)
 {
-    std::wstringstream convert;
+    std::stringstream convert;
     convert << "Pinch " << x << ", " << y << " scale(" << scale << ")";
     _eventLog.push_front(convert.str());
 }
 
 void GestureSample::gestureTapEvent(int x, int y)
 {
-    std::wstringstream convert;
+    std::stringstream convert;
     convert << "Tap " << x << ", " << y;
     _eventLog.push_front(convert.str());
 }
 
 void GestureSample::gestureLongTapEvent(int x, int y, float duration)
 {
-    std::wstringstream convert;
+    std::stringstream convert;
     convert << "Long tap " << x << ", " << y << " (" << duration << "ms)";
     _eventLog.push_front(convert.str());
 }
 
 void GestureSample::gestureDragEvent(int x, int y)
 {
-    std::wstringstream convert;
+    std::stringstream convert;
     convert << "Drag " << x << ", " << y;
     _eventLog.push_front(convert.str());
 }
 
 void GestureSample::gestureDropEvent(int x, int y)
 {
-    std::wstringstream convert;
+    std::stringstream convert;
     convert << "Drop " << x << ", " << y;
     _eventLog.push_front(convert.str());
 }

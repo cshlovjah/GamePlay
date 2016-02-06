@@ -145,8 +145,8 @@ void TerrainSample::render(float elapsedTime)
     _form->draw();
 
     // Draw text
-    wchar_t buffer[1024];
-    swprintf(buffer, 1024, L"FPS: %d", getFrameRate());
+    char buffer[1024];
+    snprintf(buffer, 1024, "FPS: %d", getFrameRate());
     _font->start();
     _font->drawText(buffer, 65, 18, Vector4::one(), 30);
     _font->finish();
@@ -362,7 +362,7 @@ void TerrainSample::controlEvent(Control* control, EventType evt)
 void TerrainSample::setMessage(const char* message)
 {
     Label* label = static_cast<Label*>(_form->getControl("message"));
-    label->setText(message ? std::wstring(message, message+strlen(message)).c_str() : L"");
+    label->setText(message ? std::string(message, message+strlen(message)).c_str() : "");
     _form->getControl("messageBox")->setVisible(message ? true : false);
 }
 

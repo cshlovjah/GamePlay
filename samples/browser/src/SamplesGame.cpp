@@ -36,7 +36,7 @@ void SamplesGame::initialize()
     {
 		Label* categoryLabel = Label::create((*_categories)[i].c_str());
         categoryLabel->setFontSize(22);
-        categoryLabel->setText(std::wstring((*_categories)[i].begin(), (*_categories)[i].end()).c_str());
+        categoryLabel->setText(std::string((*_categories)[i].begin(), (*_categories)[i].end()).c_str());
         _sampleSelectForm->addControl(categoryLabel);
         categoryLabel->release();
 
@@ -46,7 +46,7 @@ void SamplesGame::initialize()
         {
             SampleRecord sampleRecord = list[j];
 			Button* sampleButton = Button::create(sampleRecord.title.c_str());
-            sampleButton->setText(std::wstring(sampleRecord.title.begin(), sampleRecord.title.end()).c_str());
+            sampleButton->setText(std::string(sampleRecord.title.begin(), sampleRecord.title.end()).c_str());
             sampleButton->setWidth(1, true);
             sampleButton->setHeight(50);
             sampleButton->addListener(this, Control::Listener::CLICK);
@@ -107,7 +107,7 @@ void SamplesGame::render(float elapsedTime)
         
         // Draw back arrow
         _font->start();
-        _font->drawText(L"<<", getWidth() - 40, 20, Vector4::one(), 28);
+        _font->drawText("<<", getWidth() - 40, 20, Vector4::one(), 28);
         _font->finish();
         return;
     }

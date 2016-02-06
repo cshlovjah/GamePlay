@@ -5,42 +5,43 @@ include_directories(
     ${CMAKE_SOURCE_DIR}/external-deps/include
 )
 
-#add_definitions(-D__linux__)
+add_definitions(-D__linux__)
 
-#IF(ARCH_DIR STREQUAL "x64")
-#    link_directories(${CMAKE_SOURCE_DIR}/external-deps/lib/linux/x86_64)
-#ELSE()
-#    link_directories(${CMAKE_SOURCE_DIR}/external-deps/lib/linux/x86)
-#ENDIF(ARCH_DIR STREQUAL "x64")
+IF(ARCH_DIR STREQUAL "x64")
+    link_directories(${CMAKE_SOURCE_DIR}/external-deps/lib/linux/x86_64)
+ELSE()
+    link_directories(${CMAKE_SOURCE_DIR}/external-deps/lib/linux/x86)
+ENDIF(ARCH_DIR STREQUAL "x64")
+
 link_directories(${CMAKE_SOURCE_DIR}/external-deps/lib/emscripten)
 
 
 set(GAMEPLAY_LIBRARIES
     stdc++
     gameplay
-#    gameplay-deps
+    gameplay-deps
     m
     GL
-#    rt
-#    dl
-#    X11
-#    pthread
-#    gtk-x11-2.0
-#    glib-2.0
-#    gobject-2.0
-
-    Box2D
-    BulletCollision
-    BulletDynamics
-    GLEW
-    LinearMath
-    lua
-    ogg
-    png
-    tinyxml2
-    vorbis
-    vorbisenc
-    vorbisfile
+    rt
+    dl
+    X11
+    pthread
+    gtk-x11-2.0
+    glib-2.0
+    gobject-2.0
+    jpeg
+#    Box2D
+#    BulletCollision
+#    BulletDynamics
+#    GLEW
+#    LinearMath
+#    lua
+#    ogg
+#    png
+#    tinyxml2
+#    vorbis
+#    vorbisenc
+#    vorbisfile
     z
     yaml
 ) 

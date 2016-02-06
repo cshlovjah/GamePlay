@@ -282,17 +282,17 @@ std::string ParticlesSample::toString(bool b)
     return b ? "true" : "false";
 }
 
-std::wstring ParticlesSample::toString(int i)
+std::string ParticlesSample::toString(int i)
 {
-    wchar_t buf[1024];
-    swprintf(buf, 1024, L"%d", i);
+    char buf[1024];
+    snprintf(buf, 1024, "%d", i);
     return buf;
 }
 
-std::wstring ParticlesSample::toString(unsigned int i)
+std::string ParticlesSample::toString(unsigned int i)
 {
-    wchar_t buf[1024];
-    swprintf(buf, 1024, L"%d", i);
+    char buf[1024];
+    snprintf(buf, 1024, "%d", i);
     return buf;
 }
 
@@ -310,9 +310,9 @@ std::string ParticlesSample::toString(const Vector4& v)
     return s.str();
 }
 
-std::wstring ParticlesSample::toString(const Quaternion& q)
+std::string ParticlesSample::toString(const Quaternion& q)
 {
-    std::wstringstream s;
+    std::stringstream s;
     s << q.x << ", " << q.y << ", " << q.z << ", " << q.w;
     return s.str();
 }
@@ -764,9 +764,9 @@ void ParticlesSample::updateFrames()
     TextBox* cBox = (TextBox*)_form->getControl("frameCount");
     TextBox* wBox = (TextBox*)_form->getControl("frameWidth");
     TextBox* hBox = (TextBox*)_form->getControl("frameHeight");
-    unsigned int fc = (unsigned int)wcstol(cBox->getText(), NULL, 10);
-    unsigned int w = (unsigned int)wcstol(wBox->getText(), NULL, 10);
-    unsigned int h = (unsigned int)wcstol(hBox->getText(), NULL, 10);
+    unsigned int fc = (unsigned int)strtol(cBox->getText(), NULL, 10);
+    unsigned int w = (unsigned int)strtol(wBox->getText(), NULL, 10);
+    unsigned int h = (unsigned int)strtol(hBox->getText(), NULL, 10);
     if (fc > 0 && fc < 256 && fc < 1000 && w > 0 && h > 0 && w < 4096 && h < 4096)
     {
         if (w > _particleEmitter->getTexture()->getWidth())
@@ -1136,8 +1136,8 @@ void ParticlesSample::emitterChanged()
 
 void ParticlesSample::drawFrameRate(Font* font, const Vector4& color, unsigned int x, unsigned int y, unsigned int fps)
 {
-    wchar_t buffer[30];
-    swprintf(buffer, 30, L"FPS: %u\nParticles: %u", fps,dynamic_cast<ParticleEmitter*>(_particleEmitterNode->getDrawable())->getParticlesCount());
+    char buffer[30];
+    snprintf(buffer, 30, "FPS: %u\nParticles: %u", fps,dynamic_cast<ParticleEmitter*>(_particleEmitterNode->getDrawable())->getParticlesCount());
     font->start();
     font->drawText(buffer, x, y, color, 22);
     font->finish();

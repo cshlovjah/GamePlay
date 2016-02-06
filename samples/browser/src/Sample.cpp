@@ -266,8 +266,8 @@ Gamepad* Sample::getGamepad(unsigned int index, bool preferPhysical) const
 
 void Sample::drawFrameRate(Font* font, const Vector4& color, unsigned int x, unsigned int y, unsigned int fps)
 {
-    wchar_t buffer[10];
-    swprintf(buffer, 10, L"%u", fps);
+    char buffer[10];
+    snprintf(buffer, 10, "%u", fps);
     font->start();
     font->drawText(buffer, x, y, color, 18);
     font->finish();

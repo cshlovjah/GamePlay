@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 2.8)
 project(GamePlay)
 
 set(GAMEPLAY_VERSION 3.0.0)
-set(CMAKE_C_COMPILER_INIT g++)
+set(CMAKE_C_COMPILER_INIT emcc)
 
 # debug
 message( "CMAKE_BUILD_TYPE: ${CMAKE_BUILD_TYPE}" )
@@ -22,7 +22,7 @@ endif()
 add_subdirectory(gameplay)
 
 # gameplay samples
-#add_subdirectory(samples)
+add_subdirectory(samples)
 
 # gameplay encoder
 # A pre-compiled executable can be found in 'gameplay/bin'. Uncomment to build yourself.
